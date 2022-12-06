@@ -24,9 +24,11 @@ class Pawn
 
   def place_on_the_board
     @placed = true
+    @can_move = true
   end  
 
   def remove_from_the_board
     @placed = false
+    @can_move = false
   end  
 end    
