@@ -9,6 +9,9 @@ class Pawn
 
   attr_accessor :facing
 
+  attr_accessor :can_move
+  alias_method :can_move?, :can_move
+
 
   def initialize
     @color = nil
@@ -16,5 +19,6 @@ class Pawn
     @x_position = 0
     @y_position = 0
     @facing = :north
+    @can_move = false
   end  
 end    

@@ -10,8 +10,9 @@ pawn.color = "white"
 pawn.placed = true
 
 
+
 rules_engine = RulesEngine.instance
-rules_engine << [pawn, :placed, true]
+rules_engine << [pawn, :placed, pawn.placed?]
 rules_engine << [pawn, :color, "white"]
 
 ap rules_engine.entity(pawn)
@@ -21,13 +22,18 @@ rules_engine.entity(pawn).each do |predicate, object|
   puts "Pawn #{predicate} is #{object}"
 end
 
-pawn_placed_rule = rules_engine.rule "Pawn placed onto board" do
+rules_engine.rule "Pawn cannot move unless it is placed in the board" do
   forall {
     has :A, :placed, :B
+
+    assert { |token|
+      token[:B]
+    }
   }
   make {
     action { |token|
-      puts "%s and %s" % [ token[:A], token[:B] ]
+      puts "****"
+      token[:A].can_move = true unless token[:A].can_move? 
     }
   }
 end
