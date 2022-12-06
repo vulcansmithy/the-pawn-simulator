@@ -4,23 +4,20 @@ require "awesome_print"
 require_relative "pawn.rb"
 require_relative "rules_engine.rb"
 
-puts "1:08pm"
 pawn = Pawn.new
 pawn.color = "white"
 pawn.placed = true
-
-
 
 rules_engine = RulesEngine.instance
 rules_engine << [pawn, :placed, pawn.placed?]
 rules_engine << [pawn, :color, "white"]
 
-ap rules_engine.entity(pawn)
+# ap rules_engine.entity(pawn)
 
 # this how you display the facts
-rules_engine.entity(pawn).each do |predicate, object|
-  puts "Pawn #{predicate} is #{object}"
-end
+# rules_engine.entity(pawn).each do |predicate, object|
+#  puts "Pawn #{predicate} is #{object}"
+# end
 
 rules_engine.rule "Pawn cannot move unless it is placed in the board" do
   forall {
