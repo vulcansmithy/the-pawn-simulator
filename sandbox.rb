@@ -1,6 +1,8 @@
 require "wongi-engine"
 require "awesome_print"
 
+require_relative "pawn.rb"
+
 engine = Wongi::Engine.create
 
 engine << ["Alice", :friend, "Bob"]
@@ -12,3 +14,7 @@ ap engine.entity("Alice")
 engine.entity("Alice").each do |predicate, object|
   puts "Alice's #{predicate} is #{object}"
 end
+
+pawn = Pawn.new
+ap pawn.placed = true
+ap pawn
