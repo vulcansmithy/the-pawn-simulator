@@ -1,16 +1,23 @@
 require "wongi-engine"
+require_relative 'rulesets/board_ruleset'
+
 require "awesome_print"
 
-require_relative "pawn.rb"
-require_relative "rules_engine.rb"
+require_relative "pawn"
+
+
 
 pawn = Pawn.new
 pawn.color = "white"
 pawn.place_on_the_board
 
-rules_engine = RulesEngine.instance
-rules_engine << [pawn, :placed, pawn.placed?]
-rules_engine << [pawn, :color, "white"]
+# initialize the wongi engine
+ENGINE = Wongi::Engine.create
+ENGINE << [pawn, :placed, pawn.placed?]
+ENGINE << [pawn, :color, "white"]
+
+
+ENGINE << build_board_ruleset
 
 # ap rules_engine.entity(pawn)
 
@@ -19,6 +26,7 @@ rules_engine << [pawn, :color, "white"]
 #  puts "Pawn #{predicate} is #{object}"
 # end
 
+=begin
 rules_engine.rule "Pawn cannot move unless it is placed in the board" do
   forall {
     has :A, :placed, :B
@@ -34,5 +42,6 @@ rules_engine.rule "Pawn cannot move unless it is placed in the board" do
     }
   }
 end
+=end
 
 

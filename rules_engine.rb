@@ -1,3 +1,5 @@
+require "wongi-engine"
+
 class RulesEngine
   def initialize
     raise 'Singleton class cannot be initialized'
