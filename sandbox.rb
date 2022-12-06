@@ -20,12 +20,5 @@ ENGINE << build_board_ruleset
 # load the facts
 ENGINE << [pawn, :placed, pawn.placed?]
 ENGINE << [pawn, :color, "white"]
-
-
-# ap rules_engine.entity(pawn)
-
-# this how you display the facts
-# rules_engine.entity(pawn).each do |predicate, object|
-#  puts "Pawn #{predicate} is #{object}"
-# end
+ENGINE << [pawn, :move, :position]
 
