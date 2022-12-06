@@ -6,7 +6,7 @@ require_relative "rules_engine.rb"
 
 pawn = Pawn.new
 pawn.color = "white"
-pawn.placed = true
+pawn.place_on_the_board
 
 rules_engine = RulesEngine.instance
 rules_engine << [pawn, :placed, pawn.placed?]

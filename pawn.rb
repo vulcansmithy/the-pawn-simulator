@@ -21,4 +21,12 @@ class Pawn
     @facing = :north
     @can_move = false
   end  
+
+  def place_on_the_board
+    @placed = true
+  end  
+
+  def remove_from_the_board
+    @placed = false
+  end  
 end    
