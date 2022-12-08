@@ -10,14 +10,13 @@ pawn.place_on_the_board
 
 
 pawn.turn_right # should be :east
-#ap pawn
-
-
 pawn.turn_right # should be :south
-#ap pawn
-
 pawn.turn_right # should be :west
-# ap pawn
-
 pawn.turn_right # should be :north
+
+pawn.turn_left
+pawn.turn_left
+pawn.turn_left
+pawn.turn_left
 ap pawn
+

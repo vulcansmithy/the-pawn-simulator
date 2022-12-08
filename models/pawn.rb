@@ -42,6 +42,19 @@ class Pawn
     when :west
       self.heading = :north  
     end        
+  end 
+
+  def turn_left
+    case self.heading
+    when :north
+      self.heading = :west
+    when :west
+      self.heading = :south
+    when :south
+      self.heading = :east
+    when :east
+      self.heading = :north      
+    end  
   end  
 
 end    
