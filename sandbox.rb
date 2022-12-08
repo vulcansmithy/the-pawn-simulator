@@ -1,25 +1,10 @@
-require "wongi-engine"
-require_relative "rulesets/board_ruleset"
 
-# model
-require_relative "pawn"
+require_relative "models/pawn"
 
 # debugging
 require "awesome_print"
 
-include Wongi::Engine::DSL
-
 pawn = Pawn.new
 pawn.color = "white"
 pawn.place_on_the_board
-
-# initialize the wongi engine
-ENGINE = Wongi::Engine.create
-ENGINE << build_board_ruleset
-
-# load the facts
-ENGINE << [pawn, :placed, pawn.placed?]
-ENGINE << [pawn, :color, "white"]
-ENGINE << [:y_position, :set_row_to, pawn.position[1]]
-ENGINE << [:position, :move, pawn]
-
+ap pawn
