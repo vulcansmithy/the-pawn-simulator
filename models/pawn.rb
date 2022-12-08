@@ -41,7 +41,9 @@ class Pawn
       self.heading = :west
     when :west
       self.heading = :north  
-    end        
+    end
+    
+    return self.heading
   end 
 
   def turn_left
@@ -55,6 +57,8 @@ class Pawn
     when :east
       self.heading = :north      
     end  
+
+    return self.heading
   end  
 
 end    
