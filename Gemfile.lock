@@ -2,14 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     awesome_print (1.9.2)
-    wongi-engine (0.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   awesome_print
-  wongi-engine
 
 BUNDLED WITH
    2.1.4
