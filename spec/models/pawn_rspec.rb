@@ -21,6 +21,18 @@ RSpec.describe "Pawn", type: :model do
       expect(pawn.turn_left).to eq :south
       expect(pawn.turn_left).to eq :east
       expect(pawn.turn_left).to eq :north
+    end 
+    
+    it "should able to  turn left and right" do
+      pawn = Pawn.new
+      pawn.turn_left
+      pawn.turn_right
+      expect(pawn.heading).to eq :north
+
+      pawn.turn_right
+      pawn.turn_right
+      pawn.turn_left
+      expect(pawn.heading).to eq :east
     end  
   end
 end
