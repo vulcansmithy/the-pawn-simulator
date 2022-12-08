@@ -61,4 +61,16 @@ class Pawn
     return self.heading
   end  
 
+  def move(step=1)
+    case self.heading
+    when :north 
+      self.y_position += 1
+    when :east
+      self.x_position += 1
+    when :south
+      self.y_position -= 1
+    when :west
+      self.x_position -= 1
+    end
+  end  
 end    
