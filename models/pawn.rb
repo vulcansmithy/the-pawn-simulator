@@ -31,4 +31,17 @@ class Pawn
     @can_move = false
   end  
 
+  def turn_right
+    case self.heading
+    when :north 
+      self.heading = :east
+    when :east
+      self.heading = :south
+    when :south
+      self.heading = :west
+    when :west
+      self.heading = :north  
+    end        
+  end  
+
 end    
