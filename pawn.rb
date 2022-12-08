@@ -5,6 +5,7 @@ class Pawn
   alias_method :placed?, :placed
 
   attr_accessor :position
+  attr_accessor :y_position
   attr_accessor :facing
 
   attr_accessor :can_move
@@ -14,7 +15,8 @@ class Pawn
   def initialize
     @color = nil
     @placed = false
-    @position = [0, 0]
+    @position = [0, 7]
+    @y_position = 4
     @facing = :north
     @can_move = false
   end  

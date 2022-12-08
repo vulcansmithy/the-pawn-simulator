@@ -1,5 +1,5 @@
 require "wongi-engine"
-require_relative 'rulesets/board_ruleset'
+require_relative "rulesets/board_ruleset"
 
 # model
 require_relative "pawn"
@@ -20,5 +20,6 @@ ENGINE << build_board_ruleset
 # load the facts
 ENGINE << [pawn, :placed, pawn.placed?]
 ENGINE << [pawn, :color, "white"]
-ENGINE << [pawn, :move, :position]
+ENGINE << [:y_position, :set_row_to, pawn.position[1]]
+ENGINE << [:position, :move, pawn]
 
