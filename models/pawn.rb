@@ -6,7 +6,7 @@ class Pawn
 
   attr_accessor :x_position
   attr_accessor :y_position
-  attr_accessor :facing
+  attr_accessor :heading
 
   attr_accessor :can_move
   alias_method :can_move?, :can_move
@@ -17,7 +17,7 @@ class Pawn
     @placed = false
     @x_position = 0
     @y_position = 0
-    @facing = :north
+    @heading = :north
     @can_move = false
   end  
 
@@ -30,4 +30,5 @@ class Pawn
     @placed = false
     @can_move = false
   end  
+
 end    
