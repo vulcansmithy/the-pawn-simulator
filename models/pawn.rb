@@ -21,9 +21,19 @@ class Pawn
     @can_move = false
   end  
 
-  def place_on_the_board(x_position = 0, y_position = 0)
-    @placed = true
-    @can_move = true
+  def place_on_the_board(x_position=0, y_position=0, heading=nil, color=nil)
+
+    return false if x_position < 0 || x_position > 7
+    return false if y_position < 0 || y_position > 7
+
+    self.heading = heading if heading
+    self.color = color unless self.color
+
+    self.x_position = x_position
+    self.y_position = y_position
+
+    self.placed = true unless self.placed
+    self.can_move = true unless self.can_move?
   end  
 
   def remove_from_the_board
@@ -34,7 +44,7 @@ class Pawn
   def turn_right
     case self.heading
     when :north 
-      self.heading = :eas
+      self.heading = :east
     when :east
       self.heading = :south
     when :south

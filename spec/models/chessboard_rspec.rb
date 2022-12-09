@@ -1,3 +1,4 @@
+require "awesome_print"
 
 require_relative '../../models/chessboard'
 require_relative '../../models/pawn'
@@ -8,42 +9,31 @@ RSpec.describe "Chessboard", type: :model do
 
       pawn = Pawn.new
       pawn.heading = :south
-     expect( Chessboard.check_if_on_the_boarder(pawn)).to eq true
+      expect( Chessboard.check_if_on_the_boarder(pawn)).to eq true
     end
 
     it "should not move forward if the heading is north and at the north border" do
       pawn = Pawn.new
-      pawn.place_on_the_board
-      pawn.heading = :north
-      pawn.x_position = rand(0..7)
-      pawn.y_position = 7
-     expect(pawn.move).to eq false
+      pawn.place_on_the_board(rand(0..7), 7, :north, :white)
+      puts (ap pawn)
+      expect(pawn.move).to eq false
     end 
 
     it "should not move forward if the heading is east and at the east border" do
       pawn = Pawn.new
-      pawn.place_on_the_board
-      pawn.heading = :east
-      pawn.x_position = 7
-      pawn.y_position = rand(0..7)
-     expect(pawn.move).to eq false
+      pawn.place_on_the_board(7, rand(0..7), :east, :white)
+      expect(pawn.move).to eq false
     end
 
     it "should not move forward if the heading is south and at the south border" do
       pawn = Pawn.new
-      pawn.place_on_the_board
-      pawn.heading = :south
-      pawn.x_position = rand(0..7)
-      pawn.y_position = 0
-     expect(pawn.move).to eq false
+      pawn.place_on_the_board(rand(0..7), 0, :south, :white)
+      expect(pawn.move).to eq false
     end  
 
     it "should not move forward if the heading is west and at the west border" do
       pawn = Pawn.new
-      pawn.place_on_the_board
-      pawn.heading = :west
-      pawn.x_position = 0
-      pawn.y_position = rand(0..7)
+      pawn.place_on_the_board(0, rand(0..7), :west, :white)
      expect(pawn.move).to eq false
     end 
   end
