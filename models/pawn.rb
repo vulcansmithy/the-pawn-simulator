@@ -65,7 +65,7 @@ class Pawn
     # @TODO implement validation of move
     return false if step >= 2
 
-    unless Chessboard.check_if_on_the_boarder(self.x_position, self.y_position, self.heading)  
+    unless Chessboard.check_if_on_the_boarder(self)  
       return case self.heading
       when :north 
         self.y_position += 1
