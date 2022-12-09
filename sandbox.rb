@@ -10,14 +10,37 @@ class Sandbox
 
   def main
     while true do
-      print ":: "
+      print ">> "
       raw_cmd = gets.chomp.upcase
   
-      processed_cmd = self.command_processor(raw_cmd)
-      puts "#{processed_cmd.inspect}"
-  
-      break if processed_cmd&.first == :exit
-  end
+      processed_cmd = self.command_processor(raw_cmd)   
+      case processed_cmd&.first
+      when :exit 
+        puts "Exiting..."
+        break
+
+      when :left
+        puts "do left..."
+
+      when :right
+        puts "do right..."
+
+      when :move
+        puts "do move..."
+        puts "#{processed_cmd}"
+
+      when :place
+        puts "do place..." 
+        puts "do move..."
+        puts "#{processed_cmd}"
+
+      when :report
+        puts "do report..." 
+
+      else  
+        puts "Error: Unrecognized command..."
+      end  
+    end
   end  
 
   def command_processor(cmd)
@@ -58,8 +81,7 @@ class Sandbox
         result = [:move, buf.first.to_i] 
       end
     end  
-    puts "result=#{result}" unless result.empty?
-
+ 
     return result
   end  
 
