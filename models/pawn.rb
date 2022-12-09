@@ -11,6 +11,8 @@ class Pawn
   attr_accessor :can_move
   alias_method :can_move?, :can_move
 
+  attr_accessor :first_move
+  alias_method :first_move?, :first_move
 
   def initialize
     @color = nil
@@ -19,6 +21,7 @@ class Pawn
     @y_position = 0
     @heading = :north
     @can_move = false
+    @first_move = true
   end  
 
   def place_on_the_board(x_position=0, y_position=0, heading=nil, color=nil)
@@ -79,7 +82,9 @@ class Pawn
     return false if step >= 2
 
     unless Chessboard.check_if_on_the_boarder(self)  
-      return case self.heading
+      result = nil      
+      
+      result = case self.heading
       when :north 
         self.y_position += 1
       when :east
@@ -91,8 +96,12 @@ class Pawn
       else
         return :unrecognized  
       end
+
+      self.first_move = false if self.first_move?
     else
-      return false  
-    end  
+      result = false  
+    end 
+    
+    return result
   end  
 end    
