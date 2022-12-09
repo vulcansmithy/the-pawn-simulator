@@ -13,6 +13,7 @@ RSpec.describe "Chessboard", type: :model do
 
     it "should not move forward if the heading is north and at the north border" do
       pawn = Pawn.new
+      pawn.place_on_the_board
       pawn.heading = :north
       pawn.x_position = rand(0..7)
       pawn.y_position = 7
@@ -21,6 +22,7 @@ RSpec.describe "Chessboard", type: :model do
 
     it "should not move forward if the heading is east and at the east border" do
       pawn = Pawn.new
+      pawn.place_on_the_board
       pawn.heading = :east
       pawn.x_position = 7
       pawn.y_position = rand(0..7)
@@ -29,6 +31,7 @@ RSpec.describe "Chessboard", type: :model do
 
     it "should not move forward if the heading is south and at the south border" do
       pawn = Pawn.new
+      pawn.place_on_the_board
       pawn.heading = :south
       pawn.x_position = rand(0..7)
       pawn.y_position = 0
@@ -37,6 +40,7 @@ RSpec.describe "Chessboard", type: :model do
 
     it "should not move forward if the heading is west and at the west border" do
       pawn = Pawn.new
+      pawn.place_on_the_board
       pawn.heading = :west
       pawn.x_position = 0
       pawn.y_position = rand(0..7)

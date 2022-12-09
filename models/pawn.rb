@@ -62,6 +62,9 @@ class Pawn
   end  
 
   def move(step=1)
+
+    return false unless self.can_move?
+
     # @TODO implement validation of move
     return false if step >= 2
 
