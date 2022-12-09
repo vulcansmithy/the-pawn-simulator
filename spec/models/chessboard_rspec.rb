@@ -6,7 +6,6 @@ require_relative '../../models/pawn'
 RSpec.describe "Chessboard", type: :model do
   describe "border check" do
     it "should check if on the border" do
-
       pawn = Pawn.new
       pawn.heading = :south
       expect( Chessboard.check_if_on_the_boarder(pawn)).to eq true
