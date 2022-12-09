@@ -14,6 +14,7 @@ class Sandbox
       raw_cmd = gets.chomp.upcase
   
       processed_cmd = self.command_processor(raw_cmd)
+      puts "#{processed_cmd}" unless processed_cmd.nil?
   
       break if processed_cmd&.first == :exit
   end
@@ -33,35 +34,43 @@ class Sandbox
   end 
 
   def exit_command(cmd)
-    puts "Running exit_command..."
     return [:exit]
   end 
 
   def left_command(cmd)
-    puts "Running left_command..."
     return [:left]
   end
   
   def right_command(cmd)
-    puts "Running right_command..."
     return [:right]
   end 
 
   def move_command(cmd)
-    puts "Running move_command..."
+    result = nil
 
-    return [:move]
+    if cmd.gsub(/MOVE/, '').empty?
+      result = [:move, 1]
+    else
+      buf = nil
+      if (buf = cmd.scan(/1|2/)).empty? 
+        result = [] 
+      else
+        result = [:move, buf.first.to_i] 
+      end
+    end  
+    puts "result=#{result}" unless result.empty?
+
+    return result
   end  
 
   def place_command(cmd)
     puts "Running place_command..."
     puts "cmd='#{cmd}'"
+    return [:place]
   end
 
   def report_command(cmd)
-    puts "Running report_command..."
-    puts cmd.scan(/12/)
-    return [:move]
+    return [:report]
   end 
 end  
 
