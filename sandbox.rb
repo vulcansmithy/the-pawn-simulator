@@ -14,7 +14,7 @@ class Sandbox
       raw_cmd = gets.chomp.upcase
   
       processed_cmd = self.command_processor(raw_cmd)
-      puts "#{processed_cmd}" unless processed_cmd.nil?
+      puts "#{processed_cmd.inspect}"
   
       break if processed_cmd&.first == :exit
   end
@@ -22,7 +22,7 @@ class Sandbox
 
   def command_processor(cmd)
     result = nil
-    processed_cmd = nil
+    processed_cmd = []
     Sandbox::COMMAND_DICTIONARY.each do |item|
       unless (result = cmd.scan(item)).empty?
         processed_cmd = self.send("#{result.first.downcase}_command", cmd) 
@@ -64,24 +64,22 @@ class Sandbox
   end  
 
   def place_command(cmd)
-    puts "Running place_command..."
-    puts "cmd='#{cmd}'"
-    return [:place]
+    result   = []
+    position = cmd.scan(/[0-6],[0-6]/)
+    heading  = cmd.scan(/NORTH|EAST|SOUTH|WEST/)
+    color    = cmd.scan(/WHITE|BLACK/)
+    
+    if !position.empty? && !heading.empty? && !color.empty?
+      result.push(:place)
+      result.push(position.first.split(",").map(&:to_i))
+      result.push(heading.first.to_sym)
+      result.push(color.first.to_sym)
+    end  
+
+    return result
   end
 
   def report_command(cmd)
     return [:report]
   end 
 end  
-
-
-
-
-=begin
-[0-6],\s+[0-6]
-
-NORTH|EAST|SOUTH|WEST
-
-WHITE|BLACK
-
-=end
