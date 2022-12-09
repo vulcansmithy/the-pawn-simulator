@@ -3,7 +3,7 @@ class Chessboard
   end  
 
   def self.check_if_on_the_boarder(chess_piece)
-    return case heading
+    return case chess_piece.heading
       when :north 
         chess_piece.y_position == 7
       when :east

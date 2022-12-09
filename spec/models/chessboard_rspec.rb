@@ -8,7 +8,7 @@ RSpec.describe "Chessboard", type: :model do
 
       pawn = Pawn.new
       pawn.heading = :south
-     expect( Chessboard.check_if_on_the_boarder(pawn.x_position, pawn.y_position, pawn.heading)).to eq true
+     expect( Chessboard.check_if_on_the_boarder(pawn)).to eq true
     end
 
     it "should not move forward if the heading is north and at the north border" do
