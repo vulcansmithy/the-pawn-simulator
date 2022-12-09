@@ -2,7 +2,7 @@ class Chessboard
   def initialize
   end  
 
-  def self.check_if_within_the_boarder(chess_piece)
+  def self.check_if_at_the_boarder(chess_piece)
     return case chess_piece.heading
       when :north 
         chess_piece.y_position <= 7

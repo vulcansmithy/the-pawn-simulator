@@ -86,22 +86,20 @@ class Pawn
 
     step = 1 if check_for_over_step
 
-    if Chessboard.check_if_within_the_boarder(self)  
-      case self.heading
+    case self.heading
       when :north 
-        self.y_position += step
+        self.y_position += step unless Chessboard.check_if_at_the_boarder(self)
       when :east
-        self.x_position += step
+        self.x_position += step unless Chessboard.check_if_at_the_boarder(self)
       when :south
-        self.y_position -= step
+        self.y_position -= step unless Chessboard.check_if_at_the_boarder(self)
       when :west
-        self.x_position -= step
+        self.x_position -= step unless Chessboard.check_if_at_the_boarder(self)
       else
         return  
       end
 
       self.first_move = false if self.first_move?
-    end 
   end  
 
   def check_for_over_step
@@ -123,6 +121,10 @@ class Pawn
   end  
 
   def report
-    puts "REPORT: #{self.x_position}, #{self.y_position} #{self.heading}, #{self.color}"
+    if self.placed?
+      puts "REPORT: #{self.x_position}, #{self.y_position} #{self.heading}, #{self.color}"
+    else
+      puts "REPORT: The Chess piece need to be placed in the Chessboard."  
+    end  
   end  
 end    

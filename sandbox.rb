@@ -1,4 +1,6 @@
 require './sandbox'
+require_relative './models/pawn'
+require_relative './models/chessboard'
 require 'awesome_print'
 
 # this enable this ruby script to be run from the command line
@@ -9,6 +11,10 @@ class Sandbox
   COMMAND_DICTIONARY ||= [/EXIT/, /LEFT/, /RIGHT/, /MOVE/, /PLACE/, /REPORT/]
 
   def main
+
+    pawn = Pawn.new
+    chessboard = Chessboard.new
+
     while true do
       print ">> "
       raw_cmd = gets.chomp.upcase
@@ -20,22 +26,23 @@ class Sandbox
         break
 
       when :left
-        puts "do left..."
+        pawn.turn_left
 
       when :right
-        puts "do right..."
+        pawn.turn_right
 
       when :move
-        puts "do move..."
-        puts "#{processed_cmd}"
+        pawn.move(processed_cmd[1])
 
       when :place
-        puts "do place..." 
-        puts "do move..."
-        puts "#{processed_cmd}"
+        x_position = processed_cmd[1][0]
+        y_position = processed_cmd[1][1]
+        heading    = processed_cmd[2]
+        color      = processed_cmd[3]
+        pawn.place_on_the_board(x_position, y_position, heading,  color)
 
       when :report
-        puts "do report..." 
+        pawn.report 
 
       else  
         puts "Error: Unrecognized command..."
@@ -87,7 +94,7 @@ class Sandbox
 
   def place_command(cmd)
     result   = []
-    position = cmd.scan(/[0-6],[0-6]/)
+    position = cmd.scan(/[0-7],[0-7]/)
     heading  = cmd.scan(/NORTH|EAST|SOUTH|WEST/)
     color    = cmd.scan(/WHITE|BLACK/)
 
