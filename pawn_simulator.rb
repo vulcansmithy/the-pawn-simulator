@@ -1,12 +1,12 @@
-require './sandbox'
+require './pawn_simulator'
 require_relative './models/pawn'
 require_relative './models/chessboard'
 require 'awesome_print'
 
 # this enable this ruby script to be run from the command line
-Sandbox.new.main if __FILE__ == $PROGRAM_NAME
+PawnSimulator.new.main if __FILE__ == $PROGRAM_NAME
 
-class Sandbox
+class PawnSimulator
 
   COMMAND_DICTIONARY ||= [/EXIT/, /LEFT/, /RIGHT/, /MOVE/, /PLACE/, /REPORT/]
 
@@ -53,7 +53,7 @@ class Sandbox
   def command_processor(cmd)
     result = nil
     processed_cmd = []
-    Sandbox::COMMAND_DICTIONARY.each do |item|
+    PawnSimulator::COMMAND_DICTIONARY.each do |item|
       unless (result = cmd.scan(item)).empty?
         processed_cmd = self.send("#{result.first.downcase}_command", cmd) 
         break

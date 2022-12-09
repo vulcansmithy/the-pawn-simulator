@@ -76,6 +76,8 @@ class Pawn
 
     return if step > 2
 
+    return if step == 2 && !self.first_move
+
     step = 1 if check_for_over_step
 
     unless Chessboard.check_if_at_the_boarder(self)
@@ -88,8 +90,6 @@ class Pawn
         self.y_position -= step
       when :west
         self.x_position -= step
-      else
-        return  
       end
 
       self.first_move = false if self.first_move?
@@ -116,9 +116,9 @@ class Pawn
 
   def report
     if self.placed?
-      puts "REPORT: #{self.x_position}, #{self.y_position} #{self.heading}, #{self.color}"
+      puts "Output: #{self.x_position},#{self.y_position},#{self.heading},#{self.color}"
     else
-      puts "REPORT: The Chess piece need to be placed in the Chessboard."  
+      puts "Output: The Chess piece need to be placed in the Chessboard."  
     end  
   end  
 end    
