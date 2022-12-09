@@ -41,10 +41,12 @@ class Pawn
     self.can_move = true unless self.can_move?
   end  
 
+=begin 
   def remove_from_the_board
     @placed = false
     @can_move = false
   end  
+=end
 
   def turn_right
     case self.heading
@@ -118,5 +120,9 @@ class Pawn
     end
 
     return result
+  end  
+
+  def report
+    puts "REPORT: #{self.x_position}, #{self.y_position} #{self.heading}, #{self.color}"
   end  
 end    
