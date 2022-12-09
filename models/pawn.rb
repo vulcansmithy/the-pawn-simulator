@@ -79,27 +79,28 @@ class Pawn
   end  
 
   def move(step=1)
-
     return unless self.can_move?
 
     return if step > 2
 
     step = 1 if check_for_over_step
 
-    case self.heading
+    unless Chessboard.check_if_at_the_boarder(self)
+      case self.heading
       when :north 
-        self.y_position += step unless Chessboard.check_if_at_the_boarder(self)
+        self.y_position += step 
       when :east
-        self.x_position += step unless Chessboard.check_if_at_the_boarder(self)
+        self.x_position += step
       when :south
-        self.y_position -= step unless Chessboard.check_if_at_the_boarder(self)
+        self.y_position -= step
       when :west
-        self.x_position -= step unless Chessboard.check_if_at_the_boarder(self)
+        self.x_position -= step
       else
         return  
       end
 
       self.first_move = false if self.first_move?
+    end  
   end  
 
   def check_for_over_step
