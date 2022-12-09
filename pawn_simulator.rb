@@ -10,44 +10,49 @@ class PawnSimulator
 
   COMMAND_DICTIONARY ||= [/EXIT/, /LEFT/, /RIGHT/, /MOVE/, /PLACE/, /REPORT/]
 
+  def initialize
+    @pawn = Pawn.new
+    @chessboard = Chessboard.new
+  end  
+
   def main
-
-    pawn = Pawn.new
-    chessboard = Chessboard.new
-
     while true do
       print ">> "
       raw_cmd = gets.chomp.upcase
   
-      processed_cmd = self.command_processor(raw_cmd)   
-      case processed_cmd&.first
-      when :exit 
-        puts "Exiting..."
-        break
-
-      when :left
-        pawn.turn_left
-
-      when :right
-        pawn.turn_right
-
-      when :move
-        pawn.move(processed_cmd[1])
-
-      when :place
-        x_position = processed_cmd[1][0]
-        y_position = processed_cmd[1][1]
-        heading    = processed_cmd[2]
-        color      = processed_cmd[3]
-        pawn.place_on_the_board(x_position, y_position, heading,  color)
-
-      when :report
-        pawn.report 
-
-      else  
-        puts "Error: Unrecognized command..."
-      end  
+      return if self.execute(raw_cmd) == :exit
     end
+  end  
+
+  def execute(cmd)
+    processed_cmd = self.command_processor(cmd)   
+    case processed_cmd&.first
+    when :exit 
+      puts "Exiting..."
+      return :exit
+
+    when :left
+      @pawn.turn_left
+
+    when :right
+      @pawn.turn_right
+
+    when :move
+      @pawn.move(processed_cmd[1])
+
+    when :place
+      x_position = processed_cmd[1][0]
+      y_position = processed_cmd[1][1]
+      heading    = processed_cmd[2]
+      color      = processed_cmd[3]
+      @pawn.place_on_the_board(x_position, y_position, heading,  color)
+
+    when :report
+      @pawn.report 
+
+    else  
+      puts "Error: Unrecognized command..."
+    end 
   end  
 
   def command_processor(cmd)
