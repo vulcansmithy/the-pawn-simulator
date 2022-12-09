@@ -63,17 +63,21 @@ class Pawn
 
   def move(step=1)
     # @TODO implement validation of move
-    if steps <= 2
-      case self.heading
-      when :north 
-        self.y_position += 1
-      when :east
-        self.x_position += 1
-      when :south
-        self.y_position -= 1
-      when :west
-        self.x_position -= 1
-      end
-    end  
+    return if step <= 2
+
+    return if Chessboard.check_for_boarder(self.x_position, self.y_position, self.heading)  
+    
+    case self.heading
+    when :north 
+      self.y_position += 1
+    when :east
+      self.x_position += 1
+    when :south
+      self.y_position -= 1
+    when :west
+      self.x_position -= 1
+    end
+      
+ 
   end  
 end    
