@@ -21,7 +21,7 @@ class Pawn
     @can_move = false
   end  
 
-  def place_on_the_board
+  def place_on_the_board(x_position = 0, y_position = 0)
     @placed = true
     @can_move = true
   end  
@@ -34,7 +34,7 @@ class Pawn
   def turn_right
     case self.heading
     when :north 
-      self.heading = :east
+      self.heading = :eas
     when :east
       self.heading = :south
     when :south
