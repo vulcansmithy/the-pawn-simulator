@@ -1,3 +1,5 @@
+require_relative '../models/chessboard'
+
 class Pawn
   attr_accessor :color
 
@@ -76,32 +78,45 @@ class Pawn
 
   def move(step=1)
 
-    return false unless self.can_move?
+    return unless self.can_move?
 
-    # @TODO implement validation of move
-    return false if step >= 2
+    return if step > 2
 
-    unless Chessboard.check_if_on_the_boarder(self)  
-      result = nil      
-      
-      result = case self.heading
+    step = 1 if check_for_over_step
+
+    if Chessboard.check_if_within_the_boarder(self)  
+      case self.heading
       when :north 
-        self.y_position += 1
+        self.y_position += step
       when :east
-        self.x_position += 1
+        self.x_position += step
       when :south
-        self.y_position -= 1
+        self.y_position -= step
       when :west
-        self.x_position -= 1
+        self.x_position -= step
       else
-        return :unrecognized  
+        return  
       end
 
       self.first_move = false if self.first_move?
-    else
-      result = false  
     end 
-    
+  end  
+
+  def check_for_over_step
+    result = nil
+    result = case self.heading
+    when :north 
+      (self.y_position + 2) > 7
+    when :east
+      (self.x_position + 2) > 7
+    when :south
+      (self.y_position - 2) < 0
+    when :west
+      (self.x_position  - 2) < 0
+    else
+      return :unrecognized  
+    end
+
     return result
   end  
 end    
