@@ -68,12 +68,12 @@ class Sandbox
     position = cmd.scan(/[0-6],[0-6]/)
     heading  = cmd.scan(/NORTH|EAST|SOUTH|WEST/)
     color    = cmd.scan(/WHITE|BLACK/)
-    
+
     if !position.empty? && !heading.empty? && !color.empty?
       result.push(:place)
       result.push(position.first.split(",").map(&:to_i))
-      result.push(heading.first.to_sym)
-      result.push(color.first.to_sym)
+      result.push(heading.first.downcase.to_sym)
+      result.push(color.first.downcase.to_sym)
     end  
 
     return result
