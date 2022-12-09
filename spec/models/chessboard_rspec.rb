@@ -1,7 +1,7 @@
-require 'awesome_print'
-
 require_relative '../../models/chessboard'
 require_relative '../../models/pawn'
+
+require 'awesome_print'
 
 RSpec.describe "Chessboard", type: :model do
   describe "border check" do
