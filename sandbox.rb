@@ -60,6 +60,7 @@ class Sandbox
 
   def report_command(cmd)
     puts "Running report_command..."
+    puts cmd.scan(/12/)
     return [:move]
   end 
 end  
