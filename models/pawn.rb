@@ -41,13 +41,6 @@ class Pawn
     self.can_move = true unless self.can_move?
   end  
 
-=begin 
-  def remove_from_the_board
-    @placed = false
-    @can_move = false
-  end  
-=end
-
   def turn_right
     case self.heading
     when :north 
