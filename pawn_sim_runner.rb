@@ -38,20 +38,8 @@ end
 begin
   options = Parser.parse ARGV
 rescue Exception => e
-  puts "Exception encountered: #{e}"
   exit 1
 end
-  
-#PawnSimulator.new.main  if ARGV.empty?
-
-# Print options
-#puts options
-
-# process each argument
-#ARGV.each do|a|
-#    puts "@DEBUG #{ap a}"
-#end
-
 
 if options[:filename]
   PawnSimulator.new.main_with_file_input(options[:filename])
