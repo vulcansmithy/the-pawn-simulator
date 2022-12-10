@@ -4,7 +4,7 @@ require_relative './models/chessboard'
 require 'awesome_print'
 
 # this enable this ruby script to be run from the command line
-PawnSimulator.new.main if __FILE__ == $PROGRAM_NAME
+#PawnSimulator.new.main if __FILE__ == $PROGRAM_NAME
 
 class PawnSimulator
 
