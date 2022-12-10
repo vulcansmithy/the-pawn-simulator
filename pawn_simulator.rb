@@ -24,6 +24,13 @@ class PawnSimulator
     end
   end  
 
+  def main_with_file_input(filename)
+    File.open(filename).each do |raw_cmd|
+      self.execute(raw_cmd.strip)
+      return if raw_cmd.strip == "EXIT"
+    end
+  end  
+
   def execute(cmd)
     processed_cmd = self.command_processor(cmd)   
     case processed_cmd&.first
